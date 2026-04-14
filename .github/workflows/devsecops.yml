@@ -1,0 +1,24 @@
+name: DevSecOps Pipeline
+
+on:
+  push:
+    branches: [ "main", "dev" ]
+
+jobs:
+  security-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+
+    # 🔐 SAST Scan
+    - name: Run Semgrep Scan
+      uses: returntocorp/semgrep-action@v1
+
+    # 📦 Dependency Scan
+    - name: Run Trivy FS Scan
+      uses: aquasecurity/trivy-action@master
+      with:
+        scan-type: 'fs'
+        severity: 'CRITICAL,HIGH'
