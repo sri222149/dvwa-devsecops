@@ -28,7 +28,7 @@ jobs:
 
     # 🔍 Scan Docker Image
     - name: Run Trivy Image Scan
-      uses: aquasecurity/trivy-action@0.20.0
+      uses: aquasecurity/trivy-action@master
       with:
         image-ref: 'dvwa-app'
         severity: 'CRITICAL,HIGH'
